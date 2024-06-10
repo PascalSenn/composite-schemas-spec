@@ -208,14 +208,14 @@ SelectedObjectField ::
 <!-- prettier-ignore-end -->
 
 {SelectedObjectValue} are unordered lists of keyed input values wrapped in
-curly-braces `{}`. This structure is similar to the `ObjectValue` defined in the
+braces `{}`. This structure is similar to the `ObjectValue` defined in the
 GraphQL specification, but it differs by allowing the inclusion of {Path} values
 within a {SelectedValue}, thus extending the traditional `ObjectValue`
 capabilities to support direct path selections.
 
 ### Name
 
-Is equivalent to the `Name` defined in the GraphQL specification.
+`Name` is equivalent to the `Name` defined in the GraphQL specification.
 
 ## Validation
 
@@ -296,7 +296,7 @@ type context.
 
 **Explanatory Text**
 
-The {Path} literal is used to reference a specific output field from a input
+The {Path} literal is used to reference a specific output field from an input
 field. Each segment in the {Path} must correspond to a field that is valid
 within the current type scope.
 
@@ -310,10 +310,9 @@ title
 <Book>.title
 ```
 
-Incorrect paths where the field does not exist on the specified type is not
-valid result in validation errors. For instance, if `<Book>.movieId` is
-referenced but `movieId` is not a field of `Book`, will result in an invalid
-{Path}.
+Incorrect paths where the field does not exist on the specified type will result
+in validation errors. For instance, if `<Book>.movieId` is referenced but
+`movieId` is not a field of `Book`, this will result in an invalid {Path}.
 
 ```graphql counter-example
 movieId
@@ -342,7 +341,7 @@ selected field is a leaf node.
 A {Path} that refers to scalar or enum fields must end at those fields. No
 further field selections are allowed after a scalar or enum. On the other hand,
 fields returning objects, interfaces, or unions must continue to specify further
-selections until you reach a scalar or enum field.
+selections until a scalar or enum field is reached.
 
 For example, the following {Path} is valid if `title` is a scalar field on the
 `Book` type:
@@ -410,7 +409,7 @@ logically apply within the parent type.
 Literal values must be compatible with the type expected in the position they
 are found.
 
-The following examples are valid use of value literals in the context of
+The following examples are valid uses of value literals in the context of the
 {FieldSelection} scalar:
 
 ```graphql example
@@ -424,7 +423,7 @@ type Store {
 }
 ```
 
-Non-coercible values are invalid. The following examples are invalid:
+Non-coercible values are invalid:
 
 ```graphql counter-example
 type Query {
@@ -442,14 +441,14 @@ type Store {
 **Formal Specification**
 
 - For each Selected Object Field {field} in the document:
-  - Let {fieldName} be the Name of {field}.
+  - Let {fieldName} be the name of {field}.
   - Let {fieldDefinition} be the field definition provided by the parent
     selected object type named {fieldName}.
   - {fieldDefinition} must exist.
 
 **Explanatory Text**
 
-Every field provided in an selected object value must be defined in the set of
+Every field provided in a selected object value must be defined in the set of
 possible fields of that input object's expected type.
 
 For example, the following is valid:
@@ -485,8 +484,8 @@ type Store {
 
 - For each selected object value {selectedObject}:
   - For every {field} in {selectedObject}:
-    - Let {name} be the Name of {field}.
-    - Let {fields} be all Selected Object Fields named {name} in
+    - Let {name} be the name of {field}.
+    - Let {fields} be all selected object fields named {name} in
       {selectedObject}.
     - {fields} must be the set containing only {field}.
 
@@ -512,14 +511,14 @@ type Store {
 
 **Formal Specification**
 
-- For each Selected Object:
-  - Let {fields} be the fields provided by that Selected Object.
+- For each selected object:
+  - Let {fields} be the fields provided by that selected object.
   - Let {fieldDefinitions} be the set of input object field definitions of that
-    Selected Object.
+    selected object.
   - For each {fieldDefinition} in {fieldDefinitions}:
     - Let {type} be the expected type of {fieldDefinition}.
     - Let {defaultValue} be the default value of {fieldDefinition}.
-    - If {type} is Non-Null and {defaultValue} does not exist:
+    - If {type} is non-null and {defaultValue} does not exist:
       - Let {fieldName} be the name of {fieldDefinition}.
       - Let {field} be the input object field in {fields} named {fieldName}.
       - {field} must exist.
