@@ -31,7 +31,7 @@ query {
 }
 ```
 
-Here, it is exptected that the `userId` "123" corresponds directly to `User.id`,
+Here, it is expected that the `userId` "123" corresponds directly to `User.id`,
 resulting in the following response if correctly implemented:
 
 ```json
